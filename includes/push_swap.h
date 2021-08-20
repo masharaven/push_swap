@@ -28,13 +28,10 @@ void	*ft_make_num_array(t_list *dst, char **argv, int argc);
 void	ft_make_list(int *arr, t_list *new, int c);
 
 //make_serious_shit.c (double list)
+int		*ft_int_arr_cpy(int *dst, const int *src, int count);
 void    ft_make_doublelist(t_list *new, t_stacks *stacks);
 void	quick_sort(int *arr, int low, int high);
-
-
-
-
-
+int		partition(int *arr, int low, int high);
 
 
 

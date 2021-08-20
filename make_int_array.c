@@ -9,11 +9,11 @@ void	ft_make_list(int *arr, t_list *new, int c) //записывает масс�
 	while(c > i)
 	{
 		new->num[new->count_elem + i] = arr[i];
-		printf("%d\n", new->num[new->count_elem + i]);
+		printf("num%d\n", new->num[new->count_elem + i]);
 		i++;
-		
 	}
 	new->count_elem = c;
+	// printf("count_elem:|%d|\n", new->count_elem);
 	free(arr);
 }
 
@@ -46,25 +46,32 @@ void	*ft_make_num_array(t_list *dst, char **argv, int argc)
 	int	j;
 	char **buff;
 	int *arr;
+	int b;
 
-	int k;
-
+	b = 0;
 	i = 1;
 	j = 0;
 	while (i < argc)
 	{
+		printf("%d\n", i);
 		num_of_elem = ft_count_elem(argv[i]);
-		buff = ft_split(argv[i], ' ');
-		if (!(arr = (int *)malloc(sizeof(int) * (num_of_elem))))
-			exit(1);
-		while (buff[j]) //переписываем в массив интов
+		b = num_of_elem;
+		while (num_of_elem)
 		{
-			arr[j] = ft_atoi(buff[j]);
-			free(buff[j]);
-			j++;
+			buff = ft_split(argv[i], ' ');
+			if (!(arr = (int *)malloc(sizeof(int) * (num_of_elem))))
+				exit(1);
+			while (buff[j] && j != num_of_elem) //переписываем в массив интов
+			{
+				arr[j] = ft_atoi(buff[j]);
+				free(buff[j]);
+				j++;
+				num_of_elem--;
+			}
+			free(buff);
+			ft_make_list(arr, dst, b);
+			j = 0;
 		}
-		free(buff);
-		ft_make_list(arr, dst, num_of_elem);
 		i++;
 	}
 
