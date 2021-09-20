@@ -1,19 +1,15 @@
 #include "./includes/push_swap.h"
-#include <stdio.h>
 
-void	ft_make_list(int *arr, t_list *new, int c) //записывает массив интов в структуру
+void	ft_make_list(int *arr, t_list *new, int c)
 {
 	int i;
 
-	i = 0;
-	while(c > i)
+	i = -1;
+	while(c > ++i)
 	{
 		new->num[new->count_elem + i] = arr[i];
-		// printf("num%d\n", new->num[new->count_elem + i]);
-		i++;
 	}
-	new->count_elem = c;
-	// printf("count_elem:|%d|\n", new->count_elem);
+	new->count_elem += c;
 	free(arr);
 }
 
@@ -39,7 +35,7 @@ int	ft_count_elem(const char *argv)
 }
 
 
-void	*ft_make_num_array(t_list *dst, char **argv, int argc)
+void	ft_make_num_array(t_list *dst, char **argv, int argc)
 {
 	int	i;
 	int num_of_elem;
@@ -55,7 +51,7 @@ void	*ft_make_num_array(t_list *dst, char **argv, int argc)
 		num_of_elem = ft_count_elem(argv[i]);
 		buff = ft_split(argv[i], num_of_elem);
 		arr = (int *)malloc(sizeof(int) * (num_of_elem));
-		if (!buff)
+		if (!arr)
 			exit(1);
 		while (num_of_elem > ++j) //переписываем в массив интов
 		{
@@ -64,11 +60,9 @@ void	*ft_make_num_array(t_list *dst, char **argv, int argc)
 		}
 		free(buff);
 		ft_make_list(arr, dst, num_of_elem);
-		j = 0;
+		i++;
 	
-	i++;
 	}
-	return (0);
 }
 
 // "23 35 233" "12 4 1122 5"

@@ -3,7 +3,7 @@ NAME = push_swap.a
 NAME_PUSH_SWAP = push_swap
 
 SRC = make_int_array.c make_serious_shit.c make_stacks.c write_error.c\
-	sorting_to_stacks.c commands.c print_stack.c
+	sorting_to_stacks.c commands.c print_stack.c pasting_sort.c validation.c
 
 HEADER = ./includes/push_swap.h
 

@@ -1,5 +1,5 @@
 #include"./includes/push_swap.h"
-#include <stdio.h>
+// #include <stdio.h>
 
 void    sort_3_elem(t_stacks *stacks)
 {
@@ -44,11 +44,24 @@ void	sort_5_elem(t_stacks *stacks)
 			ra(&stacks->a);
 		// print_stack(stacks->a, "after");
 	}
-	print_stack(stacks->a, "a");
-	print_stack(stacks->b, "b");
+	// print_stack(stacks->a, "a");
+	// print_stack(stacks->b, "b");
 	sort_3_elem(stacks);
-	print_stack(stacks->a, "a; after");
-	
+	pa(stacks);
+	pa(stacks);
+	// print_stack(stacks->a, "a; after");
+	if (stacks->a->value == stacks->max)
+	{
+		// print_stack(stacks->a, "before pa");
+		ra(&stacks->a);
+		// print_stack(stacks->a, "after pa");
+	}
+	else
+	{
+		swap_a(stacks->a);
+		ra(&stacks->a);
+	}
+	// print_stack(stacks->a, "after pa");
 }
 
 int maximum(t_stack	*stack)
@@ -62,5 +75,5 @@ int maximum(t_stack	*stack)
 			max = stack->value;
 		stack = stack->next;
 	}
-	return (max);
+	return (max); 
 }

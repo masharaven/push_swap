@@ -41,19 +41,41 @@ void 	ra(t_stack **a)
 {
 	t_stack *last;
 	t_stack *start_next;
+	t_stack *new;
 	
 
 	if ((*a) == NULL || (*a)->next == NULL)
 		return ;
+	new = *a;
 	last = *a;
 	start_next = (*a)->next;
 	while (last->next != NULL)
 		last = last->next;
-	(*a)->next = NULL;
-	last->next = *a;
+	new->next = NULL;
+	last->next = new;
 	*a = start_next;
 	write(1, "ra\n", 3);
 	// print_stack(*a, "after");
+}
+
+//top numb goes to bottom of stack B
+void	rb(t_stack **b)
+{
+	t_stack *last;
+	t_stack *new;
+	t_stack *save;
+
+	if ((*b) == NULL || (*b)->next == NULL)
+		return ;
+	last = (*b);
+	save = *b;
+	new = (*b)->next;
+	while (last->next != NULL)
+		last = last->next;
+	save->next = NULL;
+	last->next = save;
+	*b = new;
+	write(1, "rb\n", 3);
 }
 
 //bottom goes to the top of Stack A
@@ -77,44 +99,7 @@ void	rra(t_stack **a)
 	// print_stack(*a, "the last one");
 }
 
-// void	rra(t_stack **a)
-// {
-// 	t_stack		*first_list;
-// 	t_stack		*rotate_list;
-// 	t_stack		*penultimate_list;
-
-// 	if ((*a) == NULL || (*a)->next == NULL)
-// 		return ;
-// 	first_list = *a;
-// 	penultimate_list = *a;
-// 	while (penultimate_list->next->next != NULL)
-// 		penultimate_list = penultimate_list->next;
-// 	rotate_list = penultimate_list->next;
-// 	penultimate_list->next = NULL;
-// 	rotate_list->next = first_list;
-// 	*a = rotate_list;
-// 	write(1, "rra\n", 4);
-
-// }
-
-
-// //из а в б
-// void	pb(t_stacks *stack)
-// {
-// 	t_stack *new;
-
-// 	if (stack->b == NULL)
-// 		return ;
-// 	stack->size_a -= 1;
-// 	stack->size_b += 1;
-// 	new = stack->a;
-//	stack->a = stack->a->next;
-// 	new->next = stack->b
-// 	stack->b = new;
-// 	write(1, "pb\n", 3);
-// 	print_stack(stack->b, "stack b");
-// }
-
+//send top of A to top B
 
 void	pb(t_stacks *s)
 {
@@ -131,6 +116,21 @@ void	pb(t_stacks *s)
 	write(1, "pb\n", 3);
 }
 
+//1st elem of the stack B goes to the top of A. don't do anything if B is empty
+void	pa(t_stacks *s)
+{
+	t_stack *buff;
+
+	if (s->b == NULL)
+		return ;
+	s->size_a += 1;
+	s->size_b -= 1;
+	buff = s->b;
+	s->b = s->b->next;
+	buff->next = s->a;
+	s->a = buff;
+	write(1, "pa\n", 3);
+}
 
 // void	rra(t_stack **a)
 // {

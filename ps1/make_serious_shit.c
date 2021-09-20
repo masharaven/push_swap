@@ -94,6 +94,7 @@ void	ft_make_doublelist(t_list *new, t_stacks *stacks)
 	stacks->size_b = 0;
 	stacks->min = dublicate[0];
 	stacks->max = dublicate[new->count_elem - 1];
+	stacks->mid = dublicate[new->count_elem / 2];
 	free(dublicate);
 	// printf("%d:%d\n",stacks->min, stacks->max);
 } 
