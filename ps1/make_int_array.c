@@ -64,5 +64,3 @@ void	ft_make_num_array(t_list *dst, char **argv, int argc)
 	
 	}
 }
-
-// "23 35 233" "12 4 1122 5"

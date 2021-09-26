@@ -71,10 +71,22 @@ void	swap_b(t_stack *b);
 void	ss_ab(t_stack *a, t_stack *b);
 void 	ra(t_stack **a);
 void	rra(t_stack **a);
+void	rrb(t_stack **b);
 void	pb(t_stacks *s);
 void	pa(t_stacks *s);
 void	rb(t_stack **b);
 
+//pasting_sort.c
+void    pasting_sort(t_stacks *s);
+void	start_sorting(t_stacks *stacks);
+void	count_steps(t_stack *s, int size);
+void	steps_min_top(t_stacks *stacks, t_steps *steps);
+int		finding_place(t_stacks *stacks, t_stack *b, t_steps *step, int min_steps);
+void	best_place(t_stacks *stacks, t_stack *b, int *act, int *buf);
+int		compare_best_steps(t_stack *a, int buf, int point);
+int		count_min_place(t_stack *a_stack, int small);
+
+void    do_the_commands(t_stacks *stacks, t_steps *steps);
 //my
 void print_stack (t_stack *begin, char *str);
 

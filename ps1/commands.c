@@ -99,6 +99,25 @@ void	rra(t_stack **a)
 	// print_stack(*a, "the last one");
 }
 
+void	rrb(t_stack **b)
+{
+	t_stack	*first;
+	t_stack	*moved;
+	t_stack	*rotated;
+
+	if ((*b) == NULL || (*b)->next == NULL)
+		return ;
+	first = *b;
+	moved = *b;
+	while (moved->next->next != NULL)
+		moved = moved->next;
+	rotated = moved->next;
+	moved->next = first;
+	rotated->next = first;
+	*b = rotated;
+	write(1, "rrb\n", 4);
+}
+
 //send top of A to top B
 
 void	pb(t_stacks *s)
